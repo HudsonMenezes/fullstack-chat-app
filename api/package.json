@@ -1,5 +1,13 @@
 {
+  "name": "fullstack-chat-app-backend",
+  "version": "1.0.0",
+  "description": "Fullstack chat app backend",
+  "author": "Hudson Menezes",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon"
   },
   "dependencies": {
