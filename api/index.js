@@ -20,15 +20,15 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
 app.use(cookieParser());
 
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: process.env.CLIENT_URL,
-//   })
-// );
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL,
+  })
+);
 app.options("https://fullstack-chatapp.vercel.app", cors());
 app.options("https://fullstack-chatapp.vercel.app/login", cors());
-app.use(cors({ origin: "https://fullstack-chatapp.vercel.app" }));
+// app.use(cors({ origin: "https://fullstack-chatapp.vercel.app" }));
 
 async function getuserDataFromRequest(req) {
   return new Promise((resolve, reject) => {
@@ -78,7 +78,7 @@ app.get("/profile", (req, res) => {
   }
 });
 
-app.post("/login", async (req, res) => {
+app.post("/login", cors(), async (req, res) => {
   const { username, password } = req.body;
   const foundUser = await User.findOne({ username });
   if (foundUser) {
