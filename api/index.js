@@ -26,8 +26,9 @@ app.use(
     origin: process.env.CLIENT_URL,
   })
 );
-// app.options("https://fullstack-chatapp.vercel.app", cors());
-// app.options("https://fullstack-chatapp.vercel.app/login", cors());
+app.options("https://fullstack-chatapp.vercel.app", cors());
+app.options("https://fullstack-chatapp.vercel.app/login", cors());
+app.options("https://fullstack-chatapp.vercel.app/profile", cors());
 // app.use(cors({ origin: "https://fullstack-chatapp.vercel.app" }));
 
 async function getuserDataFromRequest(req) {
