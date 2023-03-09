@@ -21,7 +21,7 @@ app.options("*", cors());
 app.use(
   cors({
     credentials: true,
-    origin: process.env.CLIENT_URL,
+    origin: "*",
     // headers: [
     //   { key: "Access-Control-Allow-Credentials", value: "true" },
     //   {
