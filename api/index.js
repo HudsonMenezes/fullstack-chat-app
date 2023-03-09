@@ -23,7 +23,10 @@ app.use(
     origin: process.env.CLIENT_URL,
     headers: [
       { key: "Access-Control-Allow-Credentials", value: "true" },
-      { key: "Access-Control-Allow-Origin", value: "*" },
+      {
+        key: "Access-Control-Allow-Origin",
+        value: "https://fullstack-chatapp.vercel.app/",
+      },
 
       {
         key: "Access-Control-Allow-Methods",
