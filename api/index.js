@@ -21,7 +21,7 @@ app.options("https://fullstack-chatapp.vercel.app/", cors());
 app.use(
   cors({
     credentials: true,
-    origin: "https://fullstack-chatapp.vercel.app/*",
+    origin: "https://fullstack-chatapp.vercel.app",
     // headers: [
     //   { key: "Access-Control-Allow-Credentials", value: "true" },
     //   {
