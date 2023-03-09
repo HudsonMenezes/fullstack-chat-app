@@ -26,7 +26,7 @@ app.use(cookieParser());
 //     origin: process.env.CLIENT_URL,
 //   })
 // );
-app.options("*", cors());
+app.options("https://fullstack-chatapp.vercel.app/", cors());
 app.use(cors({ origin: "https://fullstack-chatapp.vercel.app/" }));
 
 async function getuserDataFromRequest(req) {
