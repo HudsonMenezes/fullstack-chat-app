@@ -21,9 +21,7 @@ export default function Chat() {
   }, []);
 
   function connectToWs() {
-    const ws = new WebSocket(
-      "wss://https://fullstack-chat-app-api.vercel.app/"
-    );
+    const ws = new WebSocket("wss://fullstack-chat-app-api.vercel.app/ws");
     setWs(ws);
     ws.addEventListener("message", handleMessage);
     ws.addEventListener("close", () => {
