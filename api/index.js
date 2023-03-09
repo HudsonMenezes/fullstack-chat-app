@@ -27,6 +27,7 @@ app.use(cookieParser());
 //   })
 // );
 app.options("https://fullstack-chatapp.vercel.app", cors());
+app.options("https://fullstack-chatapp.vercel.app/login", cors());
 app.use(cors({ origin: "https://fullstack-chatapp.vercel.app" }));
 
 async function getuserDataFromRequest(req) {
