@@ -20,7 +20,7 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(
+let options = app.use(
   cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
@@ -66,7 +66,7 @@ app.get("/people", async (req, res) => {
   res.json(users);
 });
 
-app.get("/profile", (req, res) => {
+app.get("/profile", options, (req, res) => {
   const token = req.cookies?.token;
   if (token) {
     jwt.verify(token, jwtSecret, {}, (err, userData) => {
@@ -79,7 +79,7 @@ app.get("/profile", (req, res) => {
   }
 });
 
-app.post("/login", cors(), async (req, res) => {
+app.post("/login", options, async (req, res) => {
   const { username, password } = req.body;
   const foundUser = await User.findOne({ username });
   if (foundUser) {
