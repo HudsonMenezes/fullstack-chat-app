@@ -16,18 +16,19 @@ const jwtSecret = `${process.env.JWT_SECRET_KEY}`;
 const bcryptSalt = bcrypt.genSaltSync(10);
 
 const app = express();
+app.use(cors());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(
-  cors({
-    credentials: true,
-    origin: process.env.CLIENT_URL,
-  })
-);
-app.options("https://fullstack-chatapp.vercel.app", cors());
-app.options("https://fullstack-chatapp.vercel.app/login", cors());
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: process.env.CLIENT_URL,
+//   })
+// );
+// app.options("https://fullstack-chatapp.vercel.app", cors());
+// app.options("https://fullstack-chatapp.vercel.app/login", cors());
 // app.use(cors({ origin: "https://fullstack-chatapp.vercel.app" }));
 
 async function getuserDataFromRequest(req) {
