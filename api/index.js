@@ -12,7 +12,7 @@ const fs = require("fs");
 
 const app = express();
 
-app.options("*", cors());
+app.options("https://fullstack-chatapp.vercel.app", cors());
 app.use(cors());
 // app.use(
 //   cors({
