@@ -3,17 +3,13 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
-const cors = require("cors");
+// const cors = require("cors");
+import cors from "./cors";
 const bcrypt = require("bcryptjs");
 const User = require("./models/User");
 const Message = require("./models/Message");
 const ws = require("ws");
 const fs = require("fs");
-
-dotenv.config();
-mongoose.connect(process.env.MONGO_URL);
-const jwtSecret = `${process.env.JWT_SECRET_KEY}`;
-const bcryptSalt = bcrypt.genSaltSync(10);
 
 const app = express();
 
@@ -26,7 +22,7 @@ app.use(
       { key: "Access-Control-Allow-Credentials", value: "true" },
       {
         key: "Access-Control-Allow-Origin",
-        value: "https://fullstack-chatapp.vercel.app/",
+        value: "https://fullstack-chatapp.vercel.app",
       },
       {
         key: "Access-Control-Allow-Methods",
@@ -40,6 +36,11 @@ app.use(
     ],
   })
 );
+
+dotenv.config();
+mongoose.connect(process.env.MONGO_URL);
+const jwtSecret = `${process.env.JWT_SECRET_KEY}`;
+const bcryptSalt = bcrypt.genSaltSync(10);
 
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
