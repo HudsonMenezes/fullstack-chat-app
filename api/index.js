@@ -17,29 +17,29 @@ const bcryptSalt = bcrypt.genSaltSync(10);
 
 const app = express();
 
-app.options("https://fullstack-chatapp.vercel.app/", cors());
-app.use(
-  cors({
-    credentials: true,
-    origin: "https://fullstack-chatapp.vercel.app",
-    headers: [
-      { key: "Access-Control-Allow-Credentials", value: "true" },
-      {
-        key: "Access-Control-Allow-Origin",
-        value: "https://fullstack-chatapp.vercel.app/",
-      },
-      {
-        key: "Access-Control-Allow-Methods",
-        value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-      },
-      {
-        key: "Access-Control-Allow-Headers",
-        value:
-          "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization",
-      },
-    ],
-  })
-);
+// app.options("https://fullstack-chatapp.vercel.app/", cors());
+app.use(cors());
+
+// {
+//   credentials: true,
+//   origin: "https://fullstack-chatapp.vercel.app",
+//   headers: [
+//     { key: "Access-Control-Allow-Credentials", value: "true" },
+//     {
+//       key: "Access-Control-Allow-Origin",
+//       value: "https://fullstack-chatapp.vercel.app/",
+//     },
+//     {
+//       key: "Access-Control-Allow-Methods",
+//       value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+//     },
+//     {
+//       key: "Access-Control-Allow-Headers",
+//       value:
+//         "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization",
+//     },
+//   ],
+// }
 
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
@@ -63,7 +63,7 @@ app.get("/test", (req, res) => {
   res.json("test ok");
 });
 
-app.get("/messages/:userId", cors(), async (req, res) => {
+app.get("/messages/:userId", async (req, res) => {
   const { userId } = req.params;
   const userData = await getuserDataFromRequest(req);
   const ourUserId = userData.userId;
@@ -75,12 +75,12 @@ app.get("/messages/:userId", cors(), async (req, res) => {
   res.json(messages);
 });
 
-app.get("/people", cors(), async (req, res) => {
+app.get("/people", async (req, res) => {
   const users = await User.find({}, { _id: 1, username: 1 });
   res.json(users);
 });
 
-app.get("/profile", cors(), (req, res) => {
+app.get("/profile", (req, res) => {
   const token = req.cookies?.token;
   if (token) {
     jwt.verify(token, jwtSecret, {}, (err, userData) => {
@@ -93,7 +93,7 @@ app.get("/profile", cors(), (req, res) => {
   }
 });
 
-app.post("/login", cors(), async (req, res) => {
+app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const foundUser = await User.findOne({ username });
   if (foundUser) {
@@ -113,7 +113,7 @@ app.post("/login", cors(), async (req, res) => {
   }
 });
 
-app.post("/logout", cors(), (req, res) => {
+app.post("/logout", (req, res) => {
   res.cookie("token", "", { sameSite: "none", secure: true }).json("ok");
 });
 
