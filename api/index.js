@@ -36,14 +36,14 @@ app.use(
   })
 );
 
+app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use(express.json());
+app.use(cookieParser());
+
 dotenv.config();
 mongoose.connect(process.env.MONGO_URL);
 const jwtSecret = `${process.env.JWT_SECRET_KEY}`;
 const bcryptSalt = bcrypt.genSaltSync(10);
-
-app.use("/uploads", express.static(__dirname + "/uploads"));
-app.use(express.json());
-app.use(cookieParser());
 
 async function getuserDataFromRequest(req) {
   return new Promise((resolve, reject) => {
@@ -96,6 +96,7 @@ app.get("/profile", (req, res) => {
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const foundUser = await User.findOne({ username });
+  res.setHeader("Access-Control-Allow-Headers", "*");
   if (foundUser) {
     const passOk = bcrypt.compareSync(password, foundUser.password);
     if (passOk) {
