@@ -10,9 +10,6 @@ const Message = require("./models/Message");
 const ws = require("ws");
 const fs = require("fs");
 
-// Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
-
 dotenv.config();
 mongoose.connect(process.env.MONGO_URL);
 const jwtSecret = `${process.env.JWT_SECRET_KEY}`;
