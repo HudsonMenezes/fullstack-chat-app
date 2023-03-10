@@ -10,6 +10,9 @@ const Message = require("./models/Message");
 const ws = require("ws");
 const fs = require("fs");
 
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+
 dotenv.config();
 mongoose.connect(process.env.MONGO_URL);
 const jwtSecret = `${process.env.JWT_SECRET_KEY}`;
@@ -22,23 +25,22 @@ app.use(
   cors({
     credentials: true,
     origin: "https://fullstack-chatapp.vercel.app",
-    // headers: [
-    //   { key: "Access-Control-Allow-Credentials", value: "true" },
-    //   {
-    //     key: "Access-Control-Allow-Origin",
-    //     value: "https://fullstack-chatapp.vercel.app/",
-    //   },
-
-    //   {
-    //     key: "Access-Control-Allow-Methods",
-    //     value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-    //   },
-    //   {
-    //     key: "Access-Control-Allow-Headers",
-    //     value:
-    //       "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization",
-    //   },
-    // ],
+    headers: [
+      { key: "Access-Control-Allow-Credentials", value: "true" },
+      {
+        key: "Access-Control-Allow-Origin",
+        value: "https://fullstack-chatapp.vercel.app/",
+      },
+      {
+        key: "Access-Control-Allow-Methods",
+        value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+      },
+      {
+        key: "Access-Control-Allow-Headers",
+        value:
+          "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization",
+      },
+    ],
   })
 );
 
