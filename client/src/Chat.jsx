@@ -22,7 +22,7 @@ export default function Chat() {
 
   function connectToWs() {
     // const ws = new WebSocket("ws://localhost:4040");
-    const ws = new WebSocket("wss://fullstack-chat-app-api.vercel.app");
+    const ws = new WebSocket("wss://mern-chatapp-smdt.onrender.com/");
     setWs(ws);
     ws.addEventListener("message", handleMessage);
     ws.addEventListener("close", () => {
