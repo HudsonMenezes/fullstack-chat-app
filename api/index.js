@@ -63,7 +63,7 @@ app.get("/test", (req, res) => {
   res.json("test ok");
 });
 
-app.get("/messages/:userId", async (req, res) => {
+app.get("/messages/:userId", cors(), async (req, res) => {
   const { userId } = req.params;
   const userData = await getuserDataFromRequest(req);
   const ourUserId = userData.userId;
@@ -75,12 +75,12 @@ app.get("/messages/:userId", async (req, res) => {
   res.json(messages);
 });
 
-app.get("/people", async (req, res) => {
+app.get("/people", cors(), async (req, res) => {
   const users = await User.find({}, { _id: 1, username: 1 });
   res.json(users);
 });
 
-app.get("/profile", (req, res) => {
+app.get("/profile", cors(), (req, res) => {
   const token = req.cookies?.token;
   if (token) {
     jwt.verify(token, jwtSecret, {}, (err, userData) => {
@@ -93,7 +93,7 @@ app.get("/profile", (req, res) => {
   }
 });
 
-app.post("/login", async (req, res) => {
+app.post("/login", cors(), async (req, res) => {
   const { username, password } = req.body;
   const foundUser = await User.findOne({ username });
   if (foundUser) {
@@ -113,7 +113,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/logout", (req, res) => {
+app.post("/logout", cors(), (req, res) => {
   res.cookie("token", "", { sameSite: "none", secure: true }).json("ok");
 });
 
