@@ -16,12 +16,12 @@ const app = express();
 // app.use(
 //   cors({
 //     credentials: true,
-//     origin: "https://fullstack-chatapp.vercel.app",
+//     origin: "https://fullstack-chatapp.vercel.app/",
 //     headers: [
 //       { key: "Access-Control-Allow-Credentials", value: "true" },
 //       {
 //         key: "Access-Control-Allow-Origin",
-//         value: "https://fullstack-chatapp.vercel.app",
+//         value: "https://fullstack-chatapp.vercel.app/",
 //       },
 //       {
 //         key: "Access-Control-Allow-Methods",
@@ -36,11 +36,10 @@ const app = express();
 //   })
 // );
 
-// X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version,
 app.use(
   cors({
     credentias: true,
-    origin: "https://fullstack-chatapp.vercel.app/",
+    origin: "https://fullstack-chatapp.vercel.app",
   })
 );
 
