@@ -12,8 +12,8 @@ const fs = require("fs");
 
 const app = express();
 
-app.options("https://fullstack-chatapp.vercel.app", cors());
-app.use(cors());
+// app.options("https://fullstack-chatapp.vercel.app", cors());
+
 // app.use(
 //   cors({
 //     credentials: true,
@@ -38,6 +38,7 @@ app.use(cors());
 // );
 
 // X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version,
+app.use(cors());
 
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
