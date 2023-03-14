@@ -38,7 +38,7 @@ const app = express();
 
 app.use(
   cors({
-    credentias: true,
+    credentials: true,
     origin: "https://fullstack-chatapp.vercel.app",
   })
 );
