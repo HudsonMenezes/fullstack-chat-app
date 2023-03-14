@@ -3,13 +3,12 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
-const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const User = require("./models/User");
 const Message = require("./models/Message");
 const ws = require("ws");
 const fs = require("fs");
-
+const cors = require("cors");
 const app = express();
 
 // app.options("https://fullstack-chatapp.vercel.app", cors());
@@ -38,7 +37,12 @@ const app = express();
 // );
 
 // X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version,
-app.use(cors());
+app.use(
+  cors({
+    credentias: true,
+    origin: "https://fullstack-chatapp.vercel.app/",
+  })
+);
 
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
