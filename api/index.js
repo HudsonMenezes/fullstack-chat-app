@@ -11,31 +11,6 @@ const fs = require("fs");
 const cors = require("cors");
 const app = express();
 
-// app.options("https://fullstack-chatapp.vercel.app", cors());
-
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: "https://fullstack-chatapp.vercel.app/",
-//     headers: [
-//       { key: "Access-Control-Allow-Credentials", value: "true" },
-//       {
-//         key: "Access-Control-Allow-Origin",
-//         value: "https://fullstack-chatapp.vercel.app/",
-//       },
-//       {
-//         key: "Access-Control-Allow-Methods",
-//         value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-//       },
-//       {
-//         key: "Access-Control-Allow-Headers",
-//         value:
-//           "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version,Authorization",
-//       },
-//     ],
-//   })
-// );
-
 app.use(
   cors({
     credentials: true,
@@ -65,19 +40,6 @@ async function getuserDataFromRequest(req) {
     }
   });
 }
-
-// Add Access Control Allow Origin headers
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "https://fullstack-chatapp.vercel.app"
-//   );
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
 
 app.get("/test", (req, res) => {
   res.json("test ok");
